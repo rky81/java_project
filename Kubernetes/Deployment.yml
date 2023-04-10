@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: rky
+spec:
+  replicas: 2
+  selector: # tells the controller which pods to watch/belong to
+    matchLabels:
+      app: rky
+  template:
+    metadata:
+      labels:
+        app: rky
+    spec:
+      containers:
+        - name: rky
+          image: rky81/pipeline1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
